@@ -1,0 +1,14 @@
+<div class="card mb-3" style="margin:25px 0;">
+  <div class="row">
+    <div class="col-md-4">
+      <img [src]="section.ref_image" class="card-img-top" alt="{{ section.problem }}" *ngIf="!!section.ref_image">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Title: {{ section.title }}</h5>
+        <p class="card-text">Description: {{ section.description }}</p>
+        <button type="button" class="btn btn-primary" (click)="onShowSectionDetail()">Go to Section Detail</button>
+      </div>
+    </div>
+  </div>
+</div>

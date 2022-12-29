@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-xs-12" *ngIf="!!autoBlogForm">
+    <form [formGroup]="autoBlogForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success">Save Post</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              formControlName="title"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input
+              type="text"
+              id="description"
+              formControlName="description"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="poster">Poster</label>
+            <input
+              type="text"
+              id="poster"
+              formControlName="poster"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" formArrayName="sections">
+          <div class="row" *ngFor="let event of controls; let i = index">
+            <div class="row" [formGroupName]="i">
+              <label for="title">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="title">
+              <label for="description">Description</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="description">
+              <label for="problem">Problem</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="problem">
+              <label for="solution">Solution</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="solution">
+              <label for="ref_image">ImageURL</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="ref_image">
+            </div>
+            <div class="col-xs-6">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteSection(i)">Delete Section</button>
+            </div>
+          </div>
+          <div class="button row">
+            <div class="col-xs-6">
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="onAddSection()">Add Section</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

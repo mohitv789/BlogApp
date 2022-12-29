@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-md-12">
+    <app-automotive-section-item
+      *ngFor="let sectionEl of autoSections; let i = index"
+      [section]="sectionEl"
+      [index]="i"></app-automotive-section-item>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="col-md-6">
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-success" (click)="onNewPost()">New Blog Post</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-blogapp-automotive-item
+        *ngFor="let blogEl of autoBlogPosts; let i = index"
+        [blog]="blogEl"
+        [index]="i"></app-blogapp-automotive-item>
+    </div>
+  </div>
+</div>

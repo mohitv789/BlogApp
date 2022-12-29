@@ -1,0 +1,9 @@
+<div class="container" *ngIf="!!webPost">
+  <div class="row" *ngIf="!!webPostLikes">
+    <p style="border: 2px solid green;">{{ webPostLikes }} people like this.</p>
+  </div>
+  <div class="row button">
+    <button class="btn btn-primary" *ngIf="showlikeButton" (click)="onLikePost()">Like</button>
+    <button class="btn btn-primary" *ngIf="!showlikeButton" (click)="onUnLikePost()">Unlike</button>
+  </div>    
+</div>

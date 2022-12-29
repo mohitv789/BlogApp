@@ -1,0 +1,12 @@
+<div class="card bg-light mb-3" style="max-width: 100%;">
+  <a
+    style="cursor: pointer;"
+    [routerLink]="[index]"
+    routerLinkActive="active"
+    class="card list-group-item clearfix">
+    <div class="pull-left card-body">
+      <h4 class="list-group-item-heading">{{ blog.title }}</h4>
+      <p class="list-group-item-text">{{ blog.description.slice(0,50) }}</p>
+    </div>
+  </a>
+</div>

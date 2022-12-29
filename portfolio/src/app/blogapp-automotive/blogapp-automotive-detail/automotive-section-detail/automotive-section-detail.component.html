@@ -1,0 +1,9 @@
+<div *ngIf="!!section" class="card">
+  <div class="card-body">
+    <h5 class="card-title">Title: {{ section.title }}</h5>
+    <p class="card-text">Description: {{ section.description }}</p>
+    <p class="card-text">Problem: {{section.problem}}</p>
+    <p class="card-text">Solution: {{section.solution}}</p>
+  </div>
+  <img [src]="section.ref_image" alt="{{ section.title }}" class="card-img-top img-fluid">
+</div>

@@ -1,0 +1,27 @@
+<div class="container" *ngIf="webPost">
+  <div class="row">
+    <div class="col-md-12 detail-page">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row button" *ngIf="!!canShowButton" style="justify-content: center;margin:10px auto;">
+            <button class="btn btn-primary" (click)="onEditPost()">Edit Blog Post</button>
+          </div>
+        </div>
+      </div>
+      <div class="detail-pane row">
+        <div class="col-md-12">
+          <h1>{{ webPost.title }}</h1>
+          <p>{{ webPost.description }}</p>
+          <div class="ql-container ql-snow">
+            <div class="ql-editor" [innerHTML]="transformHtml(webPost.content)">
+            </div>
+          </div>
+          <p>Posted By : {{ webPost.owner }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <app-webdev-like [postSlug]="postSlug"></app-webdev-like>
+</div>
