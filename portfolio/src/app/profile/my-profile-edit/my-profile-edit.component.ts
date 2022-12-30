@@ -86,11 +86,12 @@ export class MyProfileEditComponent implements OnInit {
     if (this.editMode) {
       console.log("Edited");
       this.pService.updateProfile(this.id,this.profileForm.value);
-      
+      this.router.navigate(['profile/'+this.id]);      
       
     } else {
       console.log("Added");
       this.pService.addProfile(this.profileForm.value);
+      this.router.navigate(['profile/'+this.id]);
     }
     this.onCancel();
   }

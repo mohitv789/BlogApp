@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProfileModel } from './../profile/profile.model';
 import { ProfileService } from './../profile/profile.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,17 +11,18 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   isAuth: boolean = false;
-  myProfile: ProfileModel;
+  myProfileId: number;
   loggedInUserId: number;
   loggedInUserEmail: string;
-  constructor(private authService: AuthService,private pService: ProfileService) { }
+  constructor(private authService: AuthService,private pService: ProfileService,private router: Router) { }
 
   ngOnInit() {
+    this.pService.getProfiles();
+    this.loggedInUserEmail = JSON.parse(localStorage.getItem("email"));
+    this.loggedInUserId = JSON.parse(localStorage.getItem("userid"));
     this.authService.user.subscribe(user => {
       this.isAuth = !!user;
       console.log(!!user);
-      this.loggedInUserEmail = JSON.parse(localStorage.getItem("email"));
-      this.loggedInUserId = JSON.parse(localStorage.getItem("userid"));
     });
   }
 
@@ -30,7 +32,13 @@ export class HeaderComponent implements OnInit {
   }
 
   onShowMyProfile() {
-    // this.pService.getMyProfile()
+    this.pService.profiles.forEach(profile => {
+      if(profile.user == this.loggedInUserId)
+      {
+        this.myProfileId = profile["id"];
+      }
+    })
+    this.router.navigate(['profile/'+this.myProfileId]);    
   }
 
 }
