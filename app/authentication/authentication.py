@@ -1,7 +1,8 @@
-import jwt, datetime
+import jwt
+import datetime
 from rest_framework import exceptions
 from rest_framework.authentication import BaseAuthentication, get_authorization_header
-from .models import User
+from core.models import User
 
 
 class JWTAuthentication(BaseAuthentication):

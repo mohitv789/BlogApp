@@ -24,5 +24,5 @@ urlpatterns = [
     path('auto/', include('automotive.urls')),
     path('web/', include('webdev.urls')),
     path('auth/', include('authentication.urls')),
-    # path('profile/', include('userprofile.urls')),
+    path('profile/', include('userprofile.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

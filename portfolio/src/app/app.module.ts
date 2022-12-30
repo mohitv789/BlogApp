@@ -1,3 +1,4 @@
+import { ProfileService } from './profile/profile.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,10 @@ import { BlogappWebdevEditComponent } from './blogapp-webdev/blogapp-webdev-edit
 import { WebdevService } from './blogapp-webdev/webdev.service';
 import { QuillModule } from 'ngx-quill';
 import { WebdevLikeComponent } from './blogapp-webdev/blogapp-webdev-detail/webdev-like/webdev-like.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MyprofileDetailComponent } from './profile/myprofile-detail/myprofile-detail.component';
+import { MyProfileEditComponent } from './profile/my-profile-edit/my-profile-edit.component';
+// import { OtherProfileDetailComponent } from './profile/other-profile-detail/other-profile-detail.component';
 
 
 @NgModule({
@@ -46,7 +51,11 @@ import { WebdevLikeComponent } from './blogapp-webdev/blogapp-webdev-detail/webd
     BlogappWebdevDetailComponent,
     BlogappWebdevListComponent,
     BlogappWebdevEditComponent,
-    WebdevLikeComponent
+    WebdevLikeComponent,
+    ProfileComponent,
+    MyprofileDetailComponent,
+    MyProfileEditComponent,
+    // OtherProfileDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +83,7 @@ import { WebdevLikeComponent } from './blogapp-webdev/blogapp-webdev-detail/webd
   providers: [
     AutomotiveService,
     WebdevService,
+    ProfileService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

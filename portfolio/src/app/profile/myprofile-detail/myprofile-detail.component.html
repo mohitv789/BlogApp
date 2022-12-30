@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row button" style="justify-content: center; margin: 10px auto">
+      <button class="btn btn-primary" (click)="onEditProfile()">
+        Edit Profile
+      </button>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="myProfile">
+  <div class="row">
+    <div class="col-md-12 detail-page">
+      <div class="detail-pane row">
+        <div class="col-md-12">
+          <h1>{{ myProfile.user }}</h1>
+          <p>{{ myProfile.first_name }}</p>
+          <p>{{ myProfile.last_name }}</p>
+          <p>{{ myProfile.bio }}</p>
+          <p>{{ myProfile.city }}</p>
+          <p>{{ myProfile.gender }}</p>
+          <p>{{ myProfile.url }}</p>
+          <img
+            [src]="myProfile.avatar"
+            alt="{{ myProfile.first_name }}"
+            class="img-fluid"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

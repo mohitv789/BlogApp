@@ -109,8 +109,11 @@ export class BlogappAutomotiveEditComponent implements OnInit {
   onSubmit() {
     if (this.editMode) {
       this.amService.updateAutoPost(this.postSlug, this.autoBlogForm.value);
+      console.log(this.autoBlogForm.value);
+      
     } else {
       this.amService.addAutoPost(this.autoBlogForm.value);
+      console.log(this.autoBlogForm.value);
     }
     this.onCancel();
   }

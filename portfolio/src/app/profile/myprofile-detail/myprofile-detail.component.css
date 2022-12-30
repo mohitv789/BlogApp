@@ -1,0 +1,30 @@
+
+.button {
+    width: 300px;
+    text-align: center;
+    margin: 50px;
+    
+  }
+  
+.detail-page {
+  justify-content: center;
+}
+
+.detail-pane {
+  text-align: left;
+  border : 1px solid violet;
+  margin : 10px;
+}
+
+.ql-container {
+  width: auto;
+  height: auto;
+  justify-content: left;
+}
+
+.ql-container.ql-snow {
+  border: 0px;
+}
+  
+  
+  

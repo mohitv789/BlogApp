@@ -1,3 +1,5 @@
+import { ProfileModel } from './../profile/profile.model';
+import { ProfileService } from './../profile/profile.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
@@ -8,10 +10,10 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   isAuth: boolean = false;
-
+  myProfile: ProfileModel;
   loggedInUserId: number;
   loggedInUserEmail: string;
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private pService: ProfileService) { }
 
   ngOnInit() {
     this.authService.user.subscribe(user => {
@@ -25,6 +27,10 @@ export class HeaderComponent implements OnInit {
   onLogout() {
     this.isAuth = false;
     this.authService.logout();
+  }
+
+  onShowMyProfile() {
+    // this.pService.getMyProfile()
   }
 
 }

@@ -1,14 +1,14 @@
-"""
-URL mappings for the recipe app.
-"""
 from django.urls import (
-    path
+    path, include
 )
-# from .views import MyProfile
-
+from rest_framework import routers
+from . import views
 
 app_name = 'userprofile'
+router = routers.DefaultRouter()
+router.register('all', views.ProfileViewSet, basename='all')
+router.register('', views.MyProfileViewSet, basename='mine')
 
 urlpatterns = [
-    # path('me/', MyProfile.as_view(), name="profile"),
+    path('', include(router.urls))
 ]

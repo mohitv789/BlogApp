@@ -1,3 +1,4 @@
+import { ProfileModel } from './../profile/profile.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AutomotivePostModel } from '../blogapp-automotive/automotive_post.model';
@@ -151,6 +152,67 @@ export class DataStorageService {
     return this.http.put<WebdevPostModel>(
       "http://localhost:8000/web/blog/" + slug + "/",
       newWebdevPost,
+      httpOptions)
+  }
+
+  fetchAllProfile(): Observable<ProfileModel[]> {
+    let token = JSON.parse(localStorage.getItem('access')!);
+    const httpOptions = {
+      headers: new HttpHeaders(
+      {
+         'Authorization': 'Bearer ' + token,
+         'Content-Type': 'application/json'
+      })
+    }
+    
+    return this.http.get<ProfileModel[]>(
+      "http://localhost:8000/profile/all/",
+      httpOptions)
+  }
+
+  fetchMyProfile(id:number): Observable<ProfileModel> {
+    let token = JSON.parse(localStorage.getItem('access')!);
+    const httpOptions = {
+      headers: new HttpHeaders(
+      {
+         'Authorization': 'Bearer ' + token,
+         'Content-Type': 'application/json'
+      })
+    }
+    
+    return this.http.get<ProfileModel>(
+      "http://localhost:8000/profile/" + id + "/",
+      httpOptions)
+  }
+  addMyProfile(profile: ProfileModel): Observable<ProfileModel> {
+    let token = JSON.parse(localStorage.getItem('access')!);
+    const httpOptions = {
+      headers: new HttpHeaders(
+      {
+         'Authorization': 'Bearer ' + token,
+         'Content-Type': 'application/json'
+      })
+    }
+    console.log(profile);
+
+    return this.http.post<ProfileModel>(
+      "http://localhost:8000/profile/",
+      profile,
+      httpOptions)
+  }
+
+  updateMyProfile(id:number, newProfile: ProfileModel): Observable<ProfileModel> {
+    let token = JSON.parse(localStorage.getItem('access')!);
+    const httpOptions = {
+      headers: new HttpHeaders(
+      {
+         'Authorization': 'Bearer ' + token,
+         'Content-Type': 'application/json'
+      })
+    }
+    return this.http.put<ProfileModel>(
+      "http://localhost:8000/profile/" + id + "/",
+      newProfile,
       httpOptions)
   }
 }

@@ -39,8 +39,14 @@
               type="text"
               id="poster"
               formControlName="poster"
-              class="form-control">
+              class="form-control"
+              #poster>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <img [src]="poster.value" class="img-responsive">
         </div>
       </div>
       <div class="row">

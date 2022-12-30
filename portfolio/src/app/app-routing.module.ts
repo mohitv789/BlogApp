@@ -1,3 +1,4 @@
+import { MyprofileDetailComponent } from './profile/myprofile-detail/myprofile-detail.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
@@ -13,6 +14,9 @@ import { BlogappWebdevListComponent } from './blogapp-webdev/blogapp-webdev-list
 import { BlogappWebdevComponent } from './blogapp-webdev/blogapp-webdev.component';
 import { WebdevResolverService } from './blogapp-webdev/webdev-resolver.service';
 import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MyProfileEditComponent } from './profile/my-profile-edit/my-profile-edit.component';
+import { OtherProfileDetailComponent } from './profile/other-profile-detail/other-profile-detail.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -64,6 +68,29 @@ const appRoutes: Routes = [
         path: ':id/edit',
         component: BlogappAutomotiveEditComponent,
         resolve: [AutomotiveResolverService]
+      }
+    ]
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'new',
+        component: MyProfileEditComponent
+      },
+      {
+        path: 'other',
+        component: OtherProfileDetailComponent,
+      },
+      {
+        path: ':id',
+        component: MyprofileDetailComponent
+      },
+      {
+        path: ':id/edit',
+        component: MyProfileEditComponent
       }
     ]
   },
