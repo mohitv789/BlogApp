@@ -1,6 +1,6 @@
-import { Router } from '@angular/router';
-import { ProfileModel } from './../profile/profile.model';
 import { ProfileService } from './../profile/profile.service';
+import { DataStorageService } from '../shared/data-storage.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
@@ -14,15 +14,16 @@ export class HeaderComponent implements OnInit {
   myProfileId: number;
   loggedInUserId: number;
   loggedInUserEmail: string;
-  constructor(private authService: AuthService,private pService: ProfileService,private router: Router) { }
+  constructor(private authService: AuthService,private dsService: DataStorageService,private pService: ProfileService,private router: Router) { }
 
   ngOnInit() {
-    this.pService.getProfiles();
-    this.loggedInUserEmail = JSON.parse(localStorage.getItem("email"));
-    this.loggedInUserId = JSON.parse(localStorage.getItem("userid"));
+    if (JSON.parse(localStorage.getItem("userid"))) {
+      this.loggedInUserEmail = JSON.parse(localStorage.getItem("email"));
+      this.loggedInUserId = JSON.parse(localStorage.getItem("userid"));
+      this.dsService.setProfileFromUserID(JSON.parse(localStorage.getItem("userid")));
+    }
     this.authService.user.subscribe(user => {
       this.isAuth = !!user;
-      console.log(!!user);
     });
   }
 
@@ -32,13 +33,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onShowMyProfile() {
-    this.pService.profiles.forEach(profile => {
-      if(profile.user == this.loggedInUserId)
-      {
-        this.myProfileId = profile["id"];
-      }
-    })
-    this.router.navigate(['profile/'+this.myProfileId]);    
+    this.router.navigate(['profile/mine']);
   }
 
 }

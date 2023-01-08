@@ -1,5 +1,6 @@
 
 export class ProfileModel {
+    public id: number;
     public user: number;
     public gender: string;
     public first_name: string;
@@ -9,8 +10,9 @@ export class ProfileModel {
     public avatar: string;
     public bio: string;
   
-    constructor(user: number,gender: string, first_name: string,last_name: string,city: string,url: string,avatar: string,bio: string,) {
+    constructor(id: number,user: number,gender: string, first_name: string,last_name: string,city: string,url: string,avatar: string,bio: string,) {
       this.user = user;
+      this.id = id;
       this.gender = gender;
       this.first_name = first_name;
       this.last_name = last_name;

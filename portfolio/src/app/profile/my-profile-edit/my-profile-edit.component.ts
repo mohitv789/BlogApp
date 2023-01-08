@@ -26,26 +26,20 @@ export class MyProfileEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-      }
-    )
-    this.dsService.fetchMyProfile(this.id).subscribe((data: ProfileModel) => {
-      this.editedProfile = data;
-      console.log(data);
-      
-      if (this.editedProfile.first_name && this.editedProfile.last_name && this.editedProfile.city) {
+    this.dsService.fetchProfileByID(+localStorage.getItem("profileid")).subscribe(result => {
+      this.editedProfile = result;
+      if (result.first_name && result.last_name) {
         this.editMode = true;
       } else {
         this.editMode = false;
       }
     });
-      
+
+    
+
     setTimeout( () => { 
       this.initForm();
     }, 500 );
-    
   }
 
 
@@ -85,13 +79,13 @@ export class MyProfileEditComponent implements OnInit {
   onSubmit() {
     if (this.editMode) {
       console.log("Edited");
-      this.pService.updateProfile(this.id,this.profileForm.value);
-      this.router.navigate(['profile/'+this.id]);      
+      this.pService.updateProfile(+localStorage.getItem("profileid"),this.profileForm.value);
+      this.router.navigate(['profile/mine']);      
       
     } else {
       console.log("Added");
       this.pService.addProfile(this.profileForm.value);
-      this.router.navigate(['profile/'+this.id]);
+      this.router.navigate(['profile/mine']);
     }
     this.onCancel();
   }

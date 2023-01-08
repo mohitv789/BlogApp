@@ -1,6 +1,5 @@
 import { ProfileModel } from './profile.model';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
 import { DataStorageService } from '../shared/data-storage.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -12,17 +11,18 @@ export class ProfileService {
 
   getProfiles() {
     return this.dsService.fetchAllProfile().subscribe(result =>
-      this.profiles = result 
+      this.profiles = result
     );
   }
 
   getMyProfile(id:number) {
-    return this.dsService.fetchMyProfile(id);
+    return this.dsService.fetchProfileByID(id);
   }
 
   getMyProfileFromProfiles(index: number) {
     return this.profiles[index];
   }
+
   updateProfile(id:number,newProfile:ProfileModel) {
     return this.dsService.updateMyProfile(id,newProfile).subscribe();
   }

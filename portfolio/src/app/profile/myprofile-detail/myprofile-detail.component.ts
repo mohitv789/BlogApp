@@ -1,5 +1,5 @@
-import { ActivatedRoute, Router, Params } from '@angular/router';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ProfileService } from './../profile.service';
 import { ProfileModel } from './../profile.model';
 import { Component, OnInit } from '@angular/core';
@@ -19,15 +19,16 @@ export class MyprofileDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.id = +params['id'];
-          this.dsService.fetchMyProfile(this.id).subscribe((data: ProfileModel) => {
-            this.myProfile = data;
-          }) 
-        }
-      )   
+    if (!!localStorage.getItem("profileid")) {
+      this.id = +localStorage.getItem("profileid")
+    } else {
+      console.log("ID NOT RECORDED");      
+    }
+    setTimeout(() => {       
+      this.dsService.fetchProfileByID(+localStorage.getItem("profileid")).subscribe((data: ProfileModel) => {
+        this.myProfile = data;
+      })   
+    }, 200 );
   }
   
   onEditProfile() {

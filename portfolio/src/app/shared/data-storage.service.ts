@@ -2,9 +2,7 @@ import { ProfileModel } from './../profile/profile.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AutomotivePostModel } from '../blogapp-automotive/automotive_post.model';
-import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs';
-import { AutoBlogSection } from './auto-blog-section';
+import { Observable } from 'rxjs';
 import { WebdevPostModel } from '../blogapp-webdev/webdev_post.model';
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
@@ -170,8 +168,9 @@ export class DataStorageService {
       httpOptions)
   }
 
-  fetchMyProfile(id:number): Observable<ProfileModel> {
+  fetchProfileByID(id:number): Observable<ProfileModel> {
     let token = JSON.parse(localStorage.getItem('access')!);
+    
     const httpOptions = {
       headers: new HttpHeaders(
       {
@@ -214,5 +213,24 @@ export class DataStorageService {
       "http://localhost:8000/profile/" + id + "/",
       newProfile,
       httpOptions)
+  }
+
+  setProfileFromUserID(userID:number) {
+    let token = JSON.parse(localStorage.getItem('access')!);
+    const httpOptions = {
+      headers: new HttpHeaders(
+      {
+         'Authorization': 'Bearer ' + token,
+         'Content-Type': 'application/json'
+      })
+    }
+    
+    return this.http.get<ProfileModel[]>("http://localhost:8000/profile/all/",httpOptions).subscribe((result) => {      
+      result.forEach(element => {
+        if (element.user == JSON.parse(localStorage.getItem("userid"))) {
+          localStorage.setItem("profileid",element.id.toString())
+        }
+      });
+    });
   }
 }

@@ -62,8 +62,9 @@ export class AuthService {
       )
       .subscribe(
         (resData) => {
+          console.log(resData);          
           this.handleAuthentication(resData.tokens["access"],resData.tokens["refresh"]);
-          localStorage.setItem("email",JSON.stringify(resData.email))
+          localStorage.setItem("email",JSON.stringify(resData.email));
         }
       );
   }
@@ -75,6 +76,7 @@ export class AuthService {
     localStorage.removeItem('refresh');
     localStorage.removeItem('userid');
     localStorage.removeItem('email');
+    localStorage.removeItem('profileid');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }

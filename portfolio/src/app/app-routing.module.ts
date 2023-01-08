@@ -1,3 +1,4 @@
+import { ProfileResolverService } from './profile/profile-resolver.service';
 import { MyprofileDetailComponent } from './profile/myprofile-detail/myprofile-detail.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -83,14 +84,17 @@ const appRoutes: Routes = [
       {
         path: 'other',
         component: OtherProfileDetailComponent,
+        resolve: [ProfileResolverService]
       },
       {
-        path: ':id',
-        component: MyprofileDetailComponent
+        path: 'mine',
+        component: MyprofileDetailComponent,
+        resolve: [ProfileResolverService]
       },
       {
-        path: ':id/edit',
-        component: MyProfileEditComponent
+        path: 'mine/edit',
+        component: MyProfileEditComponent,
+        resolve: [ProfileResolverService]
       }
     ]
   },
